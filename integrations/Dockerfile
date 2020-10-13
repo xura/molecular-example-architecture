@@ -3,12 +3,14 @@ FROM node:lts-alpine
 # Working directory
 WORKDIR /app
 
+COPY shared ../shared
+
 # Install dependencies
-COPY package.json package-lock.json ./
-RUN npm ci --silent
+COPY integrations/package.json integrations/yarn.lock ./
+RUN yarn
 
 # Copy source
-COPY . .
+COPY ./integrations .
 
 # Build and cleanup
 ENV NODE_ENV=production

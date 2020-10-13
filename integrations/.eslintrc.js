@@ -3,9 +3,6 @@ module.exports = {
         "browser": true,
         "es2020": true
     },
-    "extends": [
-        "airbnb-base"
-    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 11,

@@ -4,7 +4,8 @@ services:
 
   api:
     build:
-      context: .
+      context: ..
+      dockerfile: integrations/Dockerfile
     image: moleculer-ts
     env_file: docker-compose.env
     environment:
@@ -21,33 +22,14 @@ services:
 
   greeter:
     build:
-      context: .
+      context: ..
+      dockerfile: integrations/Dockerfile
     image: moleculer-ts
     env_file: docker-compose.env
     environment:
       SERVICES: greeter
     depends_on:
       - nats
-    networks:
-      - internal
-
-  products:
-    build:
-      context: .
-    image: moleculer-ts
-    env_file: docker-compose.env
-    environment:
-      SERVICES: products
-    depends_on:
-      - mongo
-      - nats
-    networks:
-      - internal
-
-  mongo:
-    image: mongo:4
-    volumes:
-      - data:/data/db
     networks:
       - internal
 
